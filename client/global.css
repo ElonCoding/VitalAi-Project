@@ -1,0 +1,127 @@
+/** @import must precede all other statements */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Tailwind CSS theme
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+  */
+  :root {
+    /* Light green background theme */
+    --background: 140 60% 96%; /* very light green */
+    --foreground: 222.2 47.4% 11.2%; /* dark text for contrast */
+
+    --card: 140 62% 98%;
+    --card-foreground: 222.2 47.4% 11.2%;
+
+    --popover: 140 62% 98%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+
+    --primary: 140 60% 40%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 140 65% 92%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 140 60% 96%;
+    --muted-foreground: 215 16% 46%;
+
+    --accent: 200 94% 40%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 140 40% 88%;
+    --input: 140 40% 94%;
+    --ring: 140 60% 35%;
+
+    --radius: 0.5rem;
+
+    --brand: 140 60% 40%;
+    --brand-foreground: 210 40% 98%;
+
+    --sidebar-background: 140 60% 94%;
+    --sidebar-foreground: 222.2 47.4% 11.2%;
+    --sidebar-primary: 140 60% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 140 40% 92%;
+    --sidebar-accent-foreground: 222.2 47.4% 11.2%;
+    --sidebar-border: 140 40% 88%;
+    --sidebar-ring: 140 60% 35%;
+  }
+
+  .dark {
+    --background: 224 40% 8%;
+    --foreground: 214 32% 91%;
+
+    --card: 224 40% 8%;
+    --card-foreground: 214 32% 91%;
+
+    --popover: 224 40% 8%;
+    --popover-foreground: 214 32% 91%;
+
+    --primary: 200 94% 60%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 222 18% 16%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 222 18% 16%;
+    --muted-foreground: 217 15% 65%;
+
+    --accent: 265 84% 66%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 63% 35%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 223 18% 16%;
+    --input: 223 18% 16%;
+    --ring: 200 94% 60%;
+
+    --brand: 200 94% 60%;
+    --brand-foreground: 222.2 47.4% 11.2%;
+
+    --sidebar-background: 224 21% 12%;
+    --sidebar-foreground: 214 32% 91%;
+    --sidebar-primary: 200 94% 60%;
+    --sidebar-primary-foreground: 222.2 47.4% 11.2%;
+    --sidebar-accent: 223 18% 16%;
+    --sidebar-accent-foreground: 214 32% 91%;
+    --sidebar-border: 223 18% 16%;
+    --sidebar-ring: 200 94% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+  }
+
+  /* Smooth theme transitions only during toggle to avoid perf cost */
+  .theme-animating *,
+  .theme-animating ::before,
+  .theme-animating ::after {
+    transition-property: color, background-color, border-color, fill, stroke, box-shadow;
+    transition-duration: 300ms;
+    transition-timing-function: ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .theme-animating *,
+    .theme-animating ::before,
+    .theme-animating ::after {
+      transition: none !important;
+    }
+  }
+}
