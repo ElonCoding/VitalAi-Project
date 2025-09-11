@@ -44,14 +44,17 @@ export function Header() {
     };
 
     window.addEventListener("user:login", handler as EventListener);
-    return () => window.removeEventListener("user:login", handler as EventListener);
+    return () =>
+      window.removeEventListener("user:login", handler as EventListener);
   }, []);
 
   function handleLogout() {
     try {
       localStorage.removeItem("user_name");
       localStorage.removeItem("user_email");
-      try { window.dispatchEvent(new CustomEvent('user:logout')); } catch {}
+      try {
+        window.dispatchEvent(new CustomEvent("user:logout"));
+      } catch {}
     } catch {}
     setUserName(null);
     navigate("/");
@@ -79,7 +82,11 @@ export function Header() {
 
         <div className="hidden items-center gap-2 md:flex">
           <Button variant="ghost" onClick={toggle} aria-label="Toggle theme">
-            {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            {theme === "dark" ? (
+              <Sun className="h-4 w-4" />
+            ) : (
+              <Moon className="h-4 w-4" />
+            )}
           </Button>
 
           {userName ? (
@@ -89,7 +96,12 @@ export function Header() {
               </Button>
               <div className="flex items-center gap-2 rounded-md px-3 py-2 text-sm text-muted-foreground">
                 <span className="font-medium text-foreground">{userName}</span>
-                <Button size="sm" variant="ghost" onClick={handleLogout} className="gap-2">
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={handleLogout}
+                  className="gap-2"
+                >
                   <LogOut className="h-4 w-4" />
                   Logout
                 </Button>
@@ -137,24 +149,49 @@ export function Header() {
               ))}
 
               <div className="mt-2 grid grid-cols-2 gap-2">
-                <Button variant="ghost" onClick={() => { toggle(); setOpen(false); }} aria-label="Toggle theme">
-                  {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                <Button
+                  variant="ghost"
+                  onClick={() => {
+                    toggle();
+                    setOpen(false);
+                  }}
+                  aria-label="Toggle theme"
+                >
+                  {theme === "dark" ? (
+                    <Sun className="h-4 w-4" />
+                  ) : (
+                    <Moon className="h-4 w-4" />
+                  )}
                 </Button>
 
                 {userName ? (
                   <>
                     <Button asChild variant="ghost">
-                      <Link to="/me" onClick={() => setOpen(false)}>Profile</Link>
+                      <Link to="/me" onClick={() => setOpen(false)}>
+                        Profile
+                      </Link>
                     </Button>
-                    <Button variant="outline" onClick={() => { setOpen(false); handleLogout(); }}>Logout</Button>
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        setOpen(false);
+                        handleLogout();
+                      }}
+                    >
+                      Logout
+                    </Button>
                   </>
                 ) : (
                   <>
                     <Button asChild variant="ghost">
-                      <Link to="/login" onClick={() => setOpen(false)}>Login</Link>
+                      <Link to="/login" onClick={() => setOpen(false)}>
+                        Login
+                      </Link>
                     </Button>
                     <Button asChild variant="outline">
-                      <Link to="/register" onClick={() => setOpen(false)}>Register</Link>
+                      <Link to="/register" onClick={() => setOpen(false)}>
+                        Register
+                      </Link>
                     </Button>
                   </>
                 )}

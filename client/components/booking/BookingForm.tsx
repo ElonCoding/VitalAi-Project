@@ -70,7 +70,11 @@ export default function BookingForm({ onClose }: Props) {
       arr.push(booking);
       localStorage.setItem("dpis_bookings", JSON.stringify(arr));
       // dispatch update event
-      try { window.dispatchEvent(new CustomEvent("bookings:updated", { detail: booking })); } catch {}
+      try {
+        window.dispatchEvent(
+          new CustomEvent("bookings:updated", { detail: booking }),
+        );
+      } catch {}
     } catch (e) {
       // ignore
     }
@@ -82,29 +86,49 @@ export default function BookingForm({ onClose }: Props) {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       <div className="w-full max-w-2xl rounded-2xl border bg-card p-6">
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold">Confidential Appointment Booking</h3>
+          <h3 className="text-lg font-semibold">
+            Confidential Appointment Booking
+          </h3>
           <div />
         </div>
-        <p className="mt-2 text-sm text-muted-foreground">Book a confidential appointment with campus counsellors. Choose anonymous booking to keep your identity private.</p>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Book a confidential appointment with campus counsellors. Choose
+          anonymous booking to keep your identity private.
+        </p>
 
         <div className="mt-4 grid gap-3">
           <label className="text-sm">
             Appointment time
-            <input type="datetime-local" value={datetime} onChange={(e) => setDatetime(e.target.value)} className="mt-1 w-full rounded-md border bg-background px-3 py-2" />
+            <input
+              type="datetime-local"
+              value={datetime}
+              onChange={(e) => setDatetime(e.target.value)}
+              className="mt-1 w-full rounded-md border bg-background px-3 py-2"
+            />
           </label>
 
           <label className="text-sm">
             Counselor
-            <select value={counselor} onChange={(e) => setCounselor(e.target.value)} className="mt-1 w-full rounded-md border bg-background px-3 py-2">
+            <select
+              value={counselor}
+              onChange={(e) => setCounselor(e.target.value)}
+              className="mt-1 w-full rounded-md border bg-background px-3 py-2"
+            >
               {counselors.map((c) => (
-                <option key={c.id} value={c.id}>{c.name}</option>
+                <option key={c.id} value={c.id}>
+                  {c.name}
+                </option>
               ))}
             </select>
           </label>
 
           <label className="text-sm">
             Mode
-            <select value={mode} onChange={(e) => setMode(e.target.value)} className="mt-1 w-full rounded-md border bg-background px-3 py-2">
+            <select
+              value={mode}
+              onChange={(e) => setMode(e.target.value)}
+              className="mt-1 w-full rounded-md border bg-background px-3 py-2"
+            >
               <option value="in_person">In‑person (on campus)</option>
               <option value="tele">Tele‑counselling</option>
               <option value="helpline">24x7 Helpline</option>
@@ -112,27 +136,49 @@ export default function BookingForm({ onClose }: Props) {
           </label>
 
           <label className="flex items-center gap-2 text-sm">
-            <input type="checkbox" checked={anonymous} onChange={(e) => setAnonymous(e.target.checked)} /> Book anonymously (recommended)
+            <input
+              type="checkbox"
+              checked={anonymous}
+              onChange={(e) => setAnonymous(e.target.checked)}
+            />{" "}
+            Book anonymously (recommended)
           </label>
 
           {!anonymous && (
             <div>
-              <label className="text-sm">Your name
-                <input className="mt-1 w-full rounded-md border bg-background px-3 py-2" value={name} onChange={(e) => setName(e.target.value)} />
+              <label className="text-sm">
+                Your name
+                <input
+                  className="mt-1 w-full rounded-md border bg-background px-3 py-2"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
               </label>
-              <label className="text-sm">Your email
-                <input className="mt-1 w-full rounded-md border bg-background px-3 py-2" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <label className="text-sm">
+                Your email
+                <input
+                  className="mt-1 w-full rounded-md border bg-background px-3 py-2"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </label>
             </div>
           )}
 
-          <label className="text-sm">Notes (optional)
-            <textarea className="mt-1 w-full rounded-md border bg-background px-3 py-2" value={notes} onChange={(e) => setNotes(e.target.value)} />
+          <label className="text-sm">
+            Notes (optional)
+            <textarea
+              className="mt-1 w-full rounded-md border bg-background px-3 py-2"
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+            />
           </label>
         </div>
 
         <div className="mt-4 flex items-center justify-end gap-2">
-          <Button variant="ghost" onClick={onClose}>Cancel</Button>
+          <Button variant="ghost" onClick={onClose}>
+            Cancel
+          </Button>
           <Button onClick={submit}>Book appointment</Button>
         </div>
       </div>

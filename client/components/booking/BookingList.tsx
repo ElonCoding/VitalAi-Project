@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
-export default function BookingList({ compact = false }: { compact?: boolean }) {
+export default function BookingList({
+  compact = false,
+}: {
+  compact?: boolean;
+}) {
   const [bookings, setBookings] = useState<any[]>([]);
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [myAnonIds, setMyAnonIds] = useState<string[]>([]);
@@ -10,7 +14,8 @@ export default function BookingList({ compact = false }: { compact?: boolean }) 
     load();
     const h = () => load();
     window.addEventListener("bookings:updated", h as EventListener);
-    return () => window.removeEventListener("bookings:updated", h as EventListener);
+    return () =>
+      window.removeEventListener("bookings:updated", h as EventListener);
   }, []);
 
   function load() {
@@ -62,18 +67,37 @@ export default function BookingList({ compact = false }: { compact?: boolean }) 
         {visible.map((b) => (
           <div key={b.id} className="rounded-md border p-3">
             <div className="flex items-center justify-between">
-              <div className="text-sm font-medium">{b.mode === 'helpline' ? 'Helpline / Crisis' : b.mode === 'tele' ? 'Tele‑counselling' : 'In‑person'}</div>
-              <div className="text-xs text-muted-foreground">{new Date(b.datetime).toLocaleString()}</div>
+              <div className="text-sm font-medium">
+                {b.mode === "helpline"
+                  ? "Helpline / Crisis"
+                  : b.mode === "tele"
+                    ? "Tele‑counselling"
+                    : "In‑person"}
+              </div>
+              <div className="text-xs text-muted-foreground">
+                {new Date(b.datetime).toLocaleString()}
+              </div>
             </div>
-            <div className="mt-2 text-sm text-muted-foreground">Counsellor: {b.counselor}</div>
+            <div className="mt-2 text-sm text-muted-foreground">
+              Counsellor: {b.counselor}
+            </div>
             {b.anonymous ? (
               <div className="mt-2 text-sm">Booked anonymously</div>
             ) : (
-              <div className="mt-2 text-sm">Booked for: <span className="font-medium">{b.name || b.email}</span></div>
+              <div className="mt-2 text-sm">
+                Booked for:{" "}
+                <span className="font-medium">{b.name || b.email}</span>
+              </div>
             )}
-            {b.notes && <div className="mt-2 text-xs text-muted-foreground">Notes: {b.notes}</div>}
+            {b.notes && (
+              <div className="mt-2 text-xs text-muted-foreground">
+                Notes: {b.notes}
+              </div>
+            )}
             <div className="mt-3 flex items-center gap-2">
-              <Button size="sm" variant="ghost" onClick={() => cancel(b.id)}>Cancel</Button>
+              <Button size="sm" variant="ghost" onClick={() => cancel(b.id)}>
+                Cancel
+              </Button>
             </div>
           </div>
         ))}

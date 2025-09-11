@@ -22,23 +22,39 @@ export default function ResourceCard({
       <div className="flex items-start justify-between gap-3">
         <div>
           <div className="text-sm font-semibold">{title}</div>
-          <div className="mt-1 text-xs text-muted-foreground">{language} • {tags.join(" · ")}</div>
-          {description && <div className="mt-3 text-sm text-muted-foreground">{description}</div>}
+          <div className="mt-1 text-xs text-muted-foreground">
+            {language} • {tags.join(" · ")}
+          </div>
+          {description && (
+            <div className="mt-3 text-sm text-muted-foreground">
+              {description}
+            </div>
+          )}
         </div>
         <div className="flex flex-col items-end gap-2">
           {type === "video" && src ? (
-            <video controls className="h-24 w-36 rounded-md bg-black" src={src} />
+            <video
+              controls
+              className="h-24 w-36 rounded-md bg-black"
+              src={src}
+            />
           ) : type === "audio" && src ? (
             <audio controls src={src} className="w-44" />
           ) : (
-            <div className="text-xs text-muted-foreground">{type.toUpperCase()}</div>
+            <div className="text-xs text-muted-foreground">
+              {type.toUpperCase()}
+            </div>
           )}
 
           <div className="mt-2 flex items-center gap-2">
             <Button size="sm" variant="ghost" asChild>
-              <a href={src || "#"} target="_blank" rel="noreferrer">Open</a>
+              <a href={src || "#"} target="_blank" rel="noreferrer">
+                Open
+              </a>
             </Button>
-            <Button size="sm" variant="outline">Save</Button>
+            <Button size="sm" variant="outline">
+              Save
+            </Button>
           </div>
         </div>
       </div>

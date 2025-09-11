@@ -52,4 +52,12 @@ const App = () => (
   </QueryClientProvider>
 );
 
-createRoot(document.getElementById("root")!).render(<App />);
+// Mount the app idempotently — reuse existing root if present (avoids HMR duplicate createRoot warnings)
+const container = document.getElementById("root");
+if (container) {
+  const anyWindow = window as any;
+  if (!anyWindow.__DPIS_ROOT) {
+    anyWindow.__DPIS_ROOT = createRoot(container);
+  }
+  anyWindow.__DPIS_ROOT.render(<App />);
+}
